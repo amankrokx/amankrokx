@@ -1,4 +1,4 @@
-<center><h2 style="display: inline;"><b>Hi there &nbsp</b></h2> 👋</center>
+<h2><b>Hi there &nbsp👋</b></h2>
 
 ### You have reached the profile of _**Aman Kumar**_ ![Amankrokx](./aman.png) .
 An Active _Full Stack Web Developer_ ☁️ also working with IoT and Embedded Electronics Systems 🤖 .
