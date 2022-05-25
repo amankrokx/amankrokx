@@ -1,0 +1,25 @@
+include "/data/data/com.termux/files/usr/share/nano/*nanorc"
+
+set linenumbers
+
+set autoindent
+
+set tabsize 2
+
+set tabstospaces
+
+set titlecolor sky
+
+set nohelp
+
+set numbercolor slate
+
+set preserve
+
+set quickblank
+
+set showcursor
+
+set smarthome
+
+set stateflags
