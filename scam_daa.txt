@@ -1,0 +1,951 @@
+1a)
+import java.util.Scanner;
+
+// import javax.print.attribute.standard.MediaName;
+
+class xstud1a {
+    String usn, name, branch, phone;
+    Scanner sc = new Scanner(System.in);
+    void read(){
+        System.out.println("enter USN, Name, Branch, Phone");
+        usn = sc.next();
+        name = sc.next();
+        branch = sc.next();
+        phone = sc.next();
+        System.out.println();
+    }
+
+    void disp(){
+        System.out.println("USN: " + usn);
+        System.out.println("Name: " + name);
+        System.out.println("Branch: " + branch);
+        System.out.println("Phone: " + phone);
+
+    }
+
+}
+
+class stud1a {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the number of students");
+        int n = sc.nextInt();
+        xstud1a s[] = new xstud1a[n];
+        for(int i = 0; i < n; i++){
+            System.out.println("enter details of stud"+ (i + 1));
+            s[i] = new xstud1a();
+            s[i].read();
+        }
+        for(int i = 0; i < n; i++){
+            System.out.println("stud"+ i + 1);
+            s[i].disp();
+            System.out.println();
+        }
+
+        sc.close();
+
+    }
+    
+}
+
+
+1b)
+import java.util.Scanner;
+
+public class stack1b {
+    Scanner sc = new Scanner(System.in);
+    int s[], si, top;
+    stack1b(int n){
+        si = n;
+        top = -1;
+        s = new int[n]; // allocate space for stack1b array
+    }
+
+    void push(){
+        if(top == si - 1) System.out.println("stack full");
+        else{
+            System.out.println("enter element to push");
+            s[++top] = sc.nextInt();
+        }
+    }
+
+    int pop(){
+        if(top == -1) {
+            System.out.println("stack empty");
+            return -1;
+        }
+        else return s[top--];
+    }
+    
+    void display(){
+        if(top == -1) System.out.println("stack empty");
+        else{
+            for(int i = top; i >=0; i--)System.out.println(s[i]);
+
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter stack size: ");
+        int n = sc.nextInt();
+        stack1b obj = new stack1b(n);
+        while(true){
+            System.out.println("1.push, 2.pop, 3.disp");
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1: obj.push();break;
+                case 2: int popp = obj.pop();
+                        if(popp != -1) System.out.println("popped " + popp);
+                        break;
+                case 3: obj.display();break;
+                default: System.out.println("reenter the choice");
+            }
+        }
+
+    }
+}
+
+
+2a)
+import java.util.Scanner;
+
+class staff{
+    String name, phone;
+    int sid, sal;
+    Scanner sc = new Scanner(System.in);
+    void read(){
+        System.out.println("enter staff id, name, phone, salary");
+        sid = sc.nextInt();
+        name = sc.next();
+        phone = sc.next();
+        sal = sc.nextInt();
+    }
+
+    void display(){
+        System.out.println("Staff id:"+ this.sid);
+        System.out.println("name:"+ this.name);
+        System.out.println("phone:"+ this.phone);
+        System.out.println("salary:"+ this.sal);
+    }
+}
+
+class teaching extends staff{
+    String domain;
+    void read(){
+        super.read();
+        System.out.println("enter domain");
+        domain = sc.next();
+    }
+
+    void display(){
+        super.display();
+        System.out.println("domain : " + domain);
+    }
+} 
+
+public class super2a {
+    public static void main(String[] args) {
+        teaching teach[] = new teaching[3];
+        System.out.println("enter the staff details");
+        for(int i = 0; i < 3; i++){
+            System.out.println("entyer details of the teaching staff" + (i + 1));
+            teach[i] = new teaching();
+            teach[i].read();
+        }
+
+        System.out.println("details are:");
+        for(int i = 0; i < 3; i++){
+            System.out.println("teaching staff" + (i + 1));
+            teach[i].display();
+        }
+    }
+}
+
+
+2b)
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class date2b {
+    String name, dob;
+    void input(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter name");
+        name = sc.next();
+        System.out.println("enter dob");
+        dob = sc.next();
+    }
+
+    void disp(){
+        StringTokenizer st = new StringTokenizer(dob, "/");
+        System.out.print("< " + name + ", ");
+        
+        int n = st.countTokens();
+        while(st.hasMoreTokens()){
+            if(n > 1)System.out.print(st.nextToken("/") + ", " );
+            else System.out.print(st.nextToken("/") + " > ");
+            n--;
+        }
+    }
+
+    public static void main(String[] args) {
+        date2b d = new date2b();
+        d.input();
+        d.disp();
+    }
+    
+}
+
+
+3a)
+import java.util.Scanner;
+
+public class thread3a {
+    public static void main(String[] args){
+        int a, b;
+        float res;
+        try{
+            Scanner s = new Scanner(System.in);
+            a = s.nextInt();
+            b = s.nextInt();
+            res = a / b;
+            System.out.println("res: " + res);
+        }
+        catch(Exception e){
+            System.err.println("/ zero error" + e);
+        }
+    }
+}
+
+
+3b)
+import java.util.Random;
+
+class Mythread2 extends Thread {
+    @Override
+    public void run() {
+        System.out.println("square is "+ exe3b.ranint * exe3b.ranint);
+    }
+}
+
+class Mythread3 extends Thread {
+    @Override
+    public void run() {
+        System.out.println("cube is "+ exe3b.ranint * exe3b.ranint * exe3b.ranint );
+    }   
+}
+
+class Mythread1 extends Thread{
+    @Override
+    public void run() {
+        int i = 1;
+        String str;
+        try{
+            while(i <= 10){
+                switch(i){
+                    case 1 : str = "st"; break;
+                    case 2: str = "nd"; break;
+                    case 3: str = "rd"; break;
+                    default: str = "th"; break;
+                }
+                Random rand = new Random();
+                exe3b.ranint = rand.nextInt(10);
+                System.out.println((i)+ str + " random number is " + exe3b.ranint);
+                new Mythread2().start();
+                new Mythread3().start();
+                Thread.sleep(1000*1);
+                System.out.println();
+                i++;
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+}
+public class exe3b {
+    static int ranint;
+    public static void main(String[] args) {
+        System.out.println("for 10 random integers");
+        Mythread1 thread1 = new Mythread1();
+        thread1.start();
+    }
+}
+
+
+4)
+import java.util.Random;
+import java.util.Scanner;
+
+public class qs4 {
+
+    void QS(int a[], int low, int high){
+        if(low > high) return;
+        int k = divarr(a, low, high);
+        QS(a, low, k - 1);
+        QS(a, k + 1, high);
+    }
+
+    int divarr(int a[], int low, int high){
+        int key = a[low], i = low, j = high;
+        while(i < j){
+            while(i < high && key >= a[i]) i++;
+            while(j > low && key <= a[j]) j--;
+            if(i < j){
+                int temp = a[i];
+                a[j] = a[i];
+                a[j] = temp;
+            }
+        }
+        a[low] = a[j];
+        a[j] = key;
+        return j;
+    }
+    
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
+        qs4 obj = new qs4();
+        int n = sc.nextInt();
+        int a[] = new int[n];
+
+        while(true){
+            System.out.println("1.BC, 2.WC");
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1: for(int i = 0; i < n; i++) a[i] = rand.nextInt(); break;//random number
+                case 2: for(int i = 0; i < n; i++) a[i] = i + 1; break;//ascending
+                default: return;
+            }
+            // for(int i = 0; i < n; i++) a[i] = sc.nextInt();
+            long start = System.nanoTime();
+            obj.QS(a, 0, n - 1);
+            long stop = System.nanoTime();
+            System.out.println("time taken: " + (stop - start));
+            // obj.printarray(a, n);
+        }
+    }
+}
+
+
+5)
+import java.util.Random;
+import java.util.Scanner;
+
+public class ms5 {
+    void printarray(int a[], int n){
+        for(int i = 0; i < n; i++) System.out.print(a[i] + " ");
+        System.out.println();
+    }
+
+    void merge(int a[], int low, int mid, int high){
+        int i = low, j = mid + 1, k = low;
+        int c[] = new int[a.length];
+
+        while(i <= mid && j <= high){
+            if(a[i] < a[j]) c[k++] = a[i++];
+            else c[k++] = a[j++];
+        }
+        while(i <= mid) c[k++] = a[i++];
+        while(j <= high) c[k++] = a[j++];
+
+        for(i = low; i <= high; i++) a[i] = c[i];
+    
+    }
+
+    void MS(int a[], int low, int high){
+        if(low < high){          
+            int mid = (low + high) / 2;
+            MS(a, low, mid);
+            MS(a, mid + 1, high);
+            merge(a, low, mid, high);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
+        ms5 obj = new ms5();
+        int n = sc.nextInt();
+        int a[] = new int[n];
+
+        while(true){
+            System.out.println("1.BC, 2.AC, 3.WC");
+            int ch = sc.nextInt();
+            switch (ch) {
+                case 1: for(int i = 0; i < n;  i++) a[i] = i + 1; break;
+                case 2: for(int i = 0; i < n; i++) a[i] = rand.nextInt(); break;//random number
+                case 3: for(int i = 0; i < n; i++) a[i] = n - i; break;//ascending
+                default: return;
+            }
+            // for(int i = 0; i < n; i++) a[i] = sc.nextInt();
+            // obj.printarray(a, n);
+
+            long start = System.nanoTime();
+            obj.MS(a, 0, n - 1);
+            long stop = System.nanoTime();
+            System.out.println("time taken: " + (stop - start));
+            // obj.printarray(a, n);
+        }
+    }
+}
+
+
+6a)
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class knap6 {
+    void inarray(double a[], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++) a[i] = sc.nextDouble();
+    }
+
+    int nextele(double a[]){
+        int index = -1;
+        double high = 0;
+        for(int i = 0; i < a.length; i++){
+            if(a[i] > high){
+                high = a[i];
+                index = i;
+            } 
+        }
+        // System.out.println("index returned is" + index);
+        return index;
+    }
+
+    void knap(double hrs[], double profit[], double ratio[], int cap){
+        double curr_weight = 0.0;
+        double curr_profit = 0.0;
+        double sol[] = new double[ratio.length];
+        
+        for(int i = 0; i < ratio.length; i++) ratio[i] = profit[i] / hrs[i];
+        for(int i = 0; i < ratio.length; i++) System.out.print(ratio[i] + " ");
+        System.out.println("\n\n");
+        System.out.println("items considered are:");
+        // Arrays.sort(ratio);
+        while(curr_weight < cap){
+            int item = nextele(ratio);
+            if(item == -1) break;
+
+            System.out.println((item + 1) + " ");
+            if(curr_weight + hrs[item] <= cap){
+                curr_weight += hrs[item];
+                curr_profit += profit[item];
+                sol[item] = 1;
+                ratio[item] = 0;
+            }
+            else{
+                curr_profit += ratio[item] * (cap - curr_weight);
+                sol[item] = (cap - curr_weight)/hrs[item];
+                break;
+            }
+            // item++;
+        }
+        for(int i = 0; i < sol.length; i++) System.out.print(sol[i] + " ");
+        System.out.println();
+
+        System.out.println("max profit " + curr_profit);
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        knap6 obj = new knap6();
+        System.out.println("enter number of jobs:");
+        int n = sc.nextInt();
+
+        double hrs[] = new double[n];
+        double profit[] = new double[n];
+        double ratio[] = new double[n];
+
+        System.out.println("enter the capacity");
+        int cap = sc.nextInt();
+
+        System.out.println("enter work hours for each task");
+        obj.inarray(hrs, n);
+
+        System.out.println("enter profit per work for each work");
+        obj.inarray(profit, n);
+
+        obj.knap(hrs, profit, ratio, cap);
+    }
+}
+
+6b)
+import java.util.Scanner;
+
+public class knap6bdy {
+    void inarray(int a[], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++) a[i] = sc.nextInt();
+    }
+
+    void knapdp(int hrs[], int profit[], int cap, int n){
+        int k[][] = new int[n + 1][cap + 1];
+        for(int i = 0; i <= n; i++)
+            for(int j = 0; j <= cap; j++){
+                if(i == 0 || j == 0) k[i][j] = 0;
+                else if(j < hrs[i - 1]) k[i][j] = k[i - 1][j];
+                else k[i][j] = Math.max(k[i - 1][j], (profit[i - 1] + k[i - 1][j - hrs[i - 1]]));
+            }
+        System.out.println("max profit: " + k[n][cap]);
+        System.out.println("items considered are: ");
+        int i = n, j = cap;
+        while(i > 0 && j > 0){
+            if(k[i][j] != k[i - 1][j]){
+                System.out.print(i + " ");
+                j -= hrs[i - 1];
+            }
+            i--;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        knap6bdy obj = new knap6bdy();
+        System.out.println("enter number of jobs:");
+        int n = sc.nextInt();
+
+        int hrs[] = new int[n];
+        int profit[] = new int[n];
+
+        System.out.println("enter the capacity");
+        int cap = sc.nextInt();
+
+        System.out.println("enter work hours for each task");
+        obj.inarray(hrs, n);
+
+        System.out.println("enter profit per work for each work");
+        obj.inarray(profit, n);
+
+        obj.knapdp(hrs, profit, cap, n);
+    }
+}
+
+
+7)
+import java.util.Arrays;
+import java.util.Scanner;
+
+// import javax.swing.plaf.synth.SynthSplitPaneUI;
+
+public class dijk7 {
+
+    void inarray(int a[][], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) a[i][j] = sc.nextInt();
+    }
+
+    static int[] dijkstras(int a[][], int src, int n){
+        int dist[] = new int[n];
+        boolean vis[] = new boolean[n];
+        Arrays.fill(vis, Boolean.FALSE);
+        int mindis, unvis = -1;
+        for(int i = 0; i < n; i++) dist[i] = a[src - 1][i];
+
+        vis[src - 1] = true;
+        for(int i = 1; i < n; i++){
+            mindis = Integer.MAX_VALUE;
+            for(int j = 0; j < n; j++){
+                if(!vis[j] && (dist[j] < mindis)){
+                    unvis = j;
+                    mindis = dist[j];
+                }
+            } 
+            vis[unvis] = true;
+            for(int v  = 0; v < n; v++){
+                if(!vis[v] && (dist[unvis] + a[unvis][v] < dist[v]))
+                    dist[v] = dist[unvis] + a[unvis][v];
+            }
+        }
+        return dist;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        dijk7 obj = new dijk7();
+        System.out.println("enter the number of vertices");
+        int n = sc.nextInt();
+        System.out.println("enter the adjacency matrix");
+        int a[][] = new int[n][n];
+        obj.inarray(a, n);
+        System.out.println("enter source vertex");
+        int src = sc.nextInt();
+
+        int dist[] = dijkstras(a, src, n);
+        
+        for(int i = 0; i < n; i++){
+            // if((src - 1) == i) continue;
+            System.out.println("short distance from " + src + " to " + (i + 1) + "is : " + dist[i]);
+        }
+    }
+}
+
+
+
+8)
+// import java.lang.runtime.SwitchBootstraps;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class kruskal11 {
+    void inarray(int a[][], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) a[i][j] = sc.nextInt();
+    }
+
+    public static void swap(int arr[], int index){
+        int temp = arr[index];
+        arr[index] = arr[index + 1];
+        arr[index + 1] = temp;
+    }
+
+    public static int find(int parent[], int i){
+        if(parent[i] == -1) return i;
+        return find(parent, parent[i]);
+    }
+
+    public static void union(int parent[], int a, int b){
+        parent[a] = b;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        kruskal11 obj = new kruskal11();
+        System.out.println("enter number of vertices");
+        int n = sc.nextInt();
+        System.out.println("enter adjacency matrix");
+        int adj[][] = new int[n][n];
+        obj.inarray(adj, n);
+
+        int edges[] = new int[100];
+        int source[] = new int[100];
+        int dest[] = new int[100];
+
+        int k = 0;
+
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++){
+                if(adj[i][j] != 0 && adj[i][j] != 999){
+                    edges[k] = adj[i][j];
+                    source[k] = i;
+                    dest[k] = j;
+                    adj[j][i] = 0;
+                    k++;
+                }
+            }
+
+        //bubble sort array, corresponding sorce and dest array also
+        for(int i = 0; i < k - 1 ; i++)
+            for(int j = 0; j < k - i - 1; j++){
+                if(edges[j] > edges[j + 1]){
+                    swap(edges, j);
+                    swap(source, j);
+                    swap(dest, j);
+                }
+            }
+        
+        int parent[] = new int[n];
+        int mincost = 0;
+
+        System.out.println("edges in mst are: ");
+
+        Arrays.fill(parent, -1);
+        
+        for(int j = 0; j < k; j++){
+            int a = find(parent, source[j]);
+            int b = find(parent, dest[j]);
+
+            if(a != b){
+                mincost += edges[j];
+                union(parent, a, b);
+                System.out.println((source[j] + 1) + "->" +(dest[j] + 1) + " = " + edges[j]);
+            }
+        }
+
+        System.out.println("mst cost: " + mincost);
+    }
+}
+
+
+9)
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class prim9 {
+    void inarray(int a[][], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) a[i][j] = sc.nextInt();
+    }
+
+    void prims(int a[][], int src, int n){
+        boolean vis[] = new boolean[n];
+        Arrays.fill(vis, Boolean.FALSE);
+
+        vis[src - 1] = true;
+        int source = 0, target = 0, cost = 0;
+        for(int i = 1; i < n; i++){
+            int min = Integer.MAX_VALUE;
+            for(int j = 0; j < n; j++) 
+                if(vis[j])
+                    for(int k = 0; k < n; k++)
+                        if(!vis[k] && min > a[j][k]){
+                            min = a[j][k];
+                            source = j;
+                            target = k;
+                        }
+                        vis[target] = true;
+                        System.out.println("(" + source + "," + target + ")" );
+                        cost += min;
+        }
+        System.out.println("min cost = " + cost);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        prim9 obj = new prim9();
+        System.out.println("enter number of vertices");
+        int n = sc.nextInt();
+        System.out.println("enter adj matrix");
+        int a[][] = new int[n][n];
+        obj.inarray(a, n);
+
+        System.out.println("enter source");
+        int src = sc.nextInt();
+
+        obj.prims(a, src, n);
+    }
+}
+
+
+10a)
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class floyd8 {
+    final static int INF = 999;
+
+    void inarray(int a[][], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++) a[i][j] = sc.nextInt();
+    }
+
+    static int[][] floyd(int a[][], int n){
+        int shortd[][] = a.clone();
+
+        for(int k = 0; k < n; k++)
+            for(int i = 0; i < n; i++)
+                for(int j = 0; j < n; j++)
+                    shortd[i][j] = Math.min(shortd[i][j], shortd[i][k] + shortd[k][j]);
+        return shortd;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        floyd8 obj = new floyd8();
+        System.out.println("enter the number of vertices");
+        int n = sc.nextInt();
+
+        int a[][] = new int[n][n]; 
+        System.out.println("enter the cost matrix");
+        obj.inarray(a, n);
+
+        int shortd[][] = floyd(a, n);
+
+        System.out.println("matrix for shortest paths is: ");
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(shortd[i][j] == INF) System.out.println("@@");
+                else System.out.print(shortd[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+}
+
+
+10b)
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class tsp12 {
+
+    static int g(int i, int s, int cost[][], int set[], int n){
+        int newset[] = set.clone();
+        int selected[] = new int[n + 1];
+
+        newset[i] = 0;
+        if(s == 0) return cost[i][1];
+
+        for(int k = 0, j = 2; k < s; j++)
+            if(newset[j] != 0)
+                selected[k++] = cost[i][j] + g(j, s - 1, cost, newset, n);
+
+        int min = 999;
+        for(int j = 0; j < s; j++)
+            if(selected[j] < min) min = selected[j];
+
+        return min;
+    }
+
+
+    static int approx(int cost[][], int n){
+        int vis[] = new int[n + 1];
+        Arrays.fill(vis, 0);
+
+        vis[1] = 1;
+        int dist = 0, next = 0;
+
+        for(int i = 1; i < n; i++){
+            int min = 999;
+
+            for(int j = 1; j <= n; j++)
+                if((cost[i][j] != 0) && (cost[i][j] < min) && (vis[j] == 0)){
+                    next = j;
+                    min = cost[i][j];
+                }
+
+            dist += min;
+            vis[next] = 1;
+        }
+
+        dist += cost[next][1];
+        System.out.println("min cost using approx is: " + dist);
+        return dist;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter number of cities");
+        int n = sc.nextInt();
+        int cost[][] = new int[n + 1][n  + 1];
+        int s[] = new int[n + 1];
+        Arrays.fill(s, 1);
+        System.out.println("enter adj matrix");
+
+        for(int i = 1; i <= n; i++)
+            for(int j = 1; j <= n; j++) cost[i][j] = sc.nextInt();  
+
+        int a = g(1, n - 1, cost, s, n);
+
+        System.out.println("min cost is" + a);
+        int b = approx(cost, n);
+        int approx_val  =  ((b * 100) / a ) - 100;
+        System.out.println("approx tour: " + approx_val);
+    }
+}
+
+
+11)
+import java.util.Scanner;
+
+public class subsum10 {
+    void inarray(int a[], int n){
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < n; i++) a[i] = sc.nextInt();
+    }
+
+    static void printsoln(boolean sol[], int a[], int cnt){
+        cnt += 1;
+        System.out.println("soln: ");
+        for(int i = 0; i < sol.length; i++) if(sol[i]) System.out.print(a[i] + " ");
+        System.out.println();
+    } 
+
+    void subs(int a[], int sum, int index, boolean sol[], int cnt){
+        if(sum == 0) printsoln(sol, a, cnt);
+        else if(sum < 0 || index < 0) return;
+        else{
+            boolean temp[] = sol.clone();
+            temp[index] = false;
+            subs(a, sum, index - 1, temp, cnt);
+            temp[index] = true;
+            subs(a, sum - a[index], index - 1, temp, cnt);
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        subsum10 obj = new subsum10();
+        System.out.println("enter the number of elements");
+        int n = sc.nextInt();
+        System.out.println("enter elements");
+        int a[] = new int[n];
+        int cnt = 0;
+        obj.inarray(a, n);
+
+        System.out.println("enter the target sum");
+        int sum = sc.nextInt();
+
+        obj.subs(a, sum, n - 1, new boolean[n], cnt);
+    }
+}
+
+
+12)
+import java.util.Scanner;
+public class ham {
+
+	static int graph[][];
+	static int sol[], cnt = 0, n;
+
+	void inarr(){
+		Scanner  sc = new Scanner(System.in);
+		for(int i = 1 ; i <= n; i++)
+            for(int j = 1; j <= n; j++) graph[i][j] = sc.nextInt();
+	}
+
+	static void printarr(){
+		cnt += 1;
+		for(int i = 1; i <= n; i++) System.out.print(sol[i] + " ");
+		System.out.println(sol[1]);
+	}
+
+	static void nextValue(int k){
+		while(true){
+			sol[k] = (sol[k] + 1) % (n + 1);
+
+			if(sol[k] == 0) return;
+
+			if(graph[sol[k - 1]][sol[k]] != 0){
+				int j;
+				for(j = 1; j < k; j++) if(sol[j] == sol[k]) break;
+				if(j == k) 
+					if(k < n || (k == n && graph[sol[n]][sol[1]] != 0)) return;
+			}
+		}
+	}
+
+	static void hamiltonian(int k){
+		while(true){
+			nextValue(k);
+			if(sol[k] == 0) return;
+
+			if(k == n) printarr();
+
+			else hamiltonian(k + 1);
+		}
+	}
+	public static void main(String[] args) {
+		ham obj = new ham();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the number of vertices");
+		n = sc.nextInt();
+		graph = new int[n + 1][n + 1];
+
+		System.out.println("enter the adjacency matrix");
+		obj.inarr();
+
+		sol = new int[n + 1];
+		System.out.println("hamiltonian cycles are:");
+		sol[1] = 1;
+		hamiltonian(2);
+
+		if(cnt == 0) System.out.println("No ham cycles");
+
+	}
+
+}
+
